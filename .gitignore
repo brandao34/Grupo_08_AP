@@ -1,0 +1,10 @@
+# Python cache
+**/__pycache__/
+*.py[cod]
+
+# Pickle files
+*.pkl
+
+# CSV files
+*.csv
+treinar_modelos/treinar_DNN/modelos_dnn/dnn_dataset4.pkl
