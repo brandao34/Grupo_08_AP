@@ -8,6 +8,7 @@
 | pg57874      | Gonçalo Araújo Brandão           |
 | pg57875      | Guilherme José Araújo Rio        |
 | pg57885      | LingYun Zhu                      |
+| pg58105      | Gustavo da Costa Gomes           | 
 
 
 # Tarefa 1 
