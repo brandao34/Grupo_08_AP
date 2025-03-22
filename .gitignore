@@ -7,3 +7,5 @@
 
 # CSV files
 *.csv
+
+*.keras
