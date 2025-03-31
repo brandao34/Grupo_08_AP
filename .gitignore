@@ -9,3 +9,6 @@
 *.csv
 
 *.keras
+
+# vector db
+chroma_langchain_db/

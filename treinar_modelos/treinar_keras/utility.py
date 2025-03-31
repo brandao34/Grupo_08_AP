@@ -18,8 +18,15 @@ def load_dataset(dataset_version):
     if os.path.exists(validation_path):
         validation = pd.read_csv(validation_path, sep=',')
     else:
-        validation = None  # Define como None se não existir
-    
+        # Quick and dirty code caso nome seja val em vez de validation
+        validation_file = f'Dataset{dataset_version}_val_clean.csv'
+        validation_path = os.path.join(base_path, validation_file)
+        if os.path.exists(validation_path):
+            validation = pd.read_csv(validation_path, sep=',')
+        else:
+            validation = None  # Define como None se não existir
+        
+
     return train, test, validation
 
 def tfidf_preprocessing(train, test, validation):
@@ -155,3 +162,16 @@ def test_model(model,test):
     print(confusion_matrix(y_test, y_pred))
 
     return {"test_loss": metrics[0], "test_accuracy": metrics[1]}
+
+def test_inference(inference_model,x_test,y_test):
+    #metrics = model.evaluate(test)
+
+   # y_test = np.concatenate([y.numpy() for _, y in test]) 
+    y_pred_probs = inference_model(x_test)
+    y_pred_probs = tf.reshape(y_pred_probs,-1).numpy()
+    y_pred = (y_pred_probs > 0.5).astype(int) 
+    y_pred =  np.where(y_pred == 1, 'AI', 'Human')
+    print(classification_report(y_test,y_pred))
+    print(confusion_matrix(y_test,y_pred))
+
+   # return {"test_loss": metrics[0], "test_accuracy": metrics[1]}
